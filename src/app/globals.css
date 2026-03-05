@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ─── Premium Design Tokens ─── */
+@theme {
+  --font-sans: var(--font-outfit), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  /* Oceanic Palette (Deep Teal / Pro Emerald) */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  /* Main */
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+
+  /* Accent Palette (Cyan / Sky) */
+  --color-accent-400: #38bdf8;
+  --color-accent-500: #0ea5e9;
+  --color-accent-600: #0284c7;
+
+  /* Slate Neutrals */
+  --color-surface-50: #f8fafc;
+  --color-surface-100: #f1f5f9;
+  --color-surface-200: #e2e8f0;
+  --color-surface-300: #cbd5e1;
+  --color-surface-400: #94a3b8;
+  --color-surface-500: #64748b;
+  --color-surface-600: #475569;
+  --color-surface-700: #334155;
+  --color-surface-800: #1e293b;
+  --color-surface-900: #0f172a;
+
+  /* Custom Shadows (Tailwind v4 theme variables) */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.04);
+  --shadow-btn: 0 4px 12px rgba(20, 184, 166, 0.25);
+  --shadow-btn-hover: 0 12px 24px rgba(20, 184, 166, 0.3);
+
+  /* Transitions & Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-up: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+/* ─── Base Overrides ─── */
+* {
+  border-color: var(--color-surface-200);
+}
+
+body {
+  @apply bg-surface-50 text-surface-800 antialiased selection:bg-brand-100 selection:text-brand-900;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(20, 184, 166, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.03) 0px, transparent 50%);
+}
+
+/* ─── Modern Components ─── */
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-xl border border-white/40;
+  box-shadow: var(--shadow-glass);
+}
+
+.input-field {
+  @apply w-full h-12 px-4 rounded-xl border border-surface-200 bg-white transition-all duration-200 placeholder:text-surface-400 text-sm font-medium hover:border-surface-300 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none;
+}
+
+.input-label {
+  @apply text-xs font-bold uppercase tracking-wider text-surface-400 mb-2 block;
+}
+
+.btn-primary {
+  @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 text-white font-bold text-sm transition-all duration-200 hover:translate-y-[-2px] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  box-shadow: var(--shadow-btn);
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow: var(--shadow-btn-hover);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border border-surface-200 text-surface-600 font-bold text-sm transition-all duration-200 hover:bg-surface-50 hover:text-surface-900 active:scale-[0.98] disabled:opacity-50;
+}
+
+.badge {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest;
+}
+
+.badge-outline {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-surface-200 bg-white text-surface-500;
+}
+
+.badge-brand {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-brand-50 border border-brand-100 text-brand-700;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-accent-600;
+}
+
+/* ─── Scrollbars ─── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surface-200 rounded-full hover:bg-surface-300;
+}
+
+/* ─── React Flow Customizations (Canvas) ─── */
+.react-flow__background {
+  @apply opacity-30;
+}
+
+.react-flow__controls-button {
+  @apply bg-white border-surface-200 hover:bg-surface-50 transition-colors !rounded-lg !mb-1;
+}
+
+.react-flow__minimap {
+  @apply !bg-white/80 !backdrop-blur-md !border-surface-200 !rounded-2xl !shadow-lg;
+}
