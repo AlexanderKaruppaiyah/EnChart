@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
         const { data: newTeam, error: insertErr } = await supabase
             .from('teams')
             .insert([{ name: teamName.trim() }])
-            .select('id, name')
+            .select('id, team_name')
             .single();
 
         if (insertErr) {
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
             }
         } else {
             teamId = newTeam.id;
-            resolvedName = newTeam.name || teamName;
+            resolvedName = newTeam.team_name || teamName;
         }
 
         /* ── 2. Upsert members (safe against duplicate pkey / retry) ── */
